@@ -1,4 +1,3 @@
-using System.Data.Common;
 using CadastroAlunos.Models;
 namespace CadastroAlunos.Services
 {
