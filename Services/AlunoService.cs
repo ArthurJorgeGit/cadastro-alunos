@@ -1,73 +1,73 @@
 using System.Data.Common;
 using CadastroAlunos.Models;
-public class AlunoService
+namespace CadastroAlunos.Services
 {
-    private List<Aluno> alunos = new List<Aluno>();
-    private int proximoId = 1;
 
-    public List<Aluno> Alunos
+    public class AlunoService
     {
-        get{return this.Alunos;}
-        set{this.Alunos = value;}
-    }
-    public int ProximoId
-    {
-        get{return this.proximoId;}
-        set{this.proximoId = value;}
-    }
-    public AlunoService(List<Aluno> alunos, int proximoId)
-    {
-        this.alunos = alunos;
-        this.proximoId = proximoId;
-    }
-    public void Cadastrar(Aluno aluno)
-    {
-        aluno.Id = proximoId;
-        alunos.Add(aluno);
-        proximoId++;
-    }
-    public void ListarTodos()
-    {
-        if (alunos.Count == 0)
+        private List<Aluno> alunos = new List<Aluno>();
+        private int proximoId = 1;
+
+        public List<Aluno> Alunos
         {
-            Console.WriteLine("Nenhum aluno cadastrado");
+            get { return this.Alunos; }
+            set { this.Alunos = value; }
         }
-        foreach (Aluno i in alunos)
+        public int ProximoId
         {
-            Console.WriteLine(i.ExibirInfo);
-        }    
-    }
-    public void BuscarPorNome(string nome)
-    {
-        bool encontrou = false;
-        foreach (Aluno i in alunos)
+            get { return this.proximoId; }
+            set { this.proximoId = value; }
+        }
+       
+        public void Cadastrar(Aluno aluno)
         {
-            if (i.Nome.Contains(nome))
+            aluno.Id = proximoId;
+            alunos.Add(aluno);
+            proximoId++;
+        }
+        public void ListarTodos()
+        {
+            if (alunos.Count == 0)
             {
-                encontrou = true;
+                Console.WriteLine("Nenhum aluno cadastrado");
+            }
+            foreach (Aluno i in alunos)
+            {
                 i.ExibirInfo();
             }
         }
-        if (encontrou == false)
+        public void BuscarPorNome(string nome)
         {
-            Console.WriteLine("Nenhum aluno encontrado.");
-        }  
-    }
-    public void Remover(int id)
-    {
-        bool encontrou = false;
-        foreach (Aluno i in alunos)
-        {
-            if (i.Id == id)
+            bool encontrou = false;
+            foreach (Aluno i in alunos)
             {
-                alunos.Remove(i);
-                encontrou = true;
-                break;
+                if (i.Nome.Contains(nome))
+                {
+                    encontrou = true;
+                    i.ExibirInfo();
+                }
+            }
+            if (encontrou == false)
+            {
+                Console.WriteLine("Nenhum aluno encontrado.");
             }
         }
-        if (encontrou == false)
+        public void Remover(int id)
         {
-            Console.WriteLine("Aluno não encontrado.");
+            bool encontrou = false;
+            foreach (Aluno i in alunos)
+            {
+                if (i.Id == id)
+                {
+                    alunos.Remove(i);
+                    encontrou = true;
+                    break;
+                }
+            }
+            if (encontrou == false)
+            {
+                Console.WriteLine("Aluno não encontrado.");
+            }
         }
     }
 }
