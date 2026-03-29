@@ -15,17 +15,17 @@ class Program
             Console.WriteLine("3. Buscar por nome");
             Console.WriteLine("4. Remover aluno");
             Console.WriteLine("0. Sair");
-            opcao = int.Parse(Console.ReadLine());
+            opcao = int.Parse(Console.ReadLine()!);
 
             switch (opcao)
             {
                 case 1:
                 Console.WriteLine("Informe o Nome do aluno:");
-                string nome = Console.ReadLine();
+                string nome = Console.ReadLine()!;
                 Console.WriteLine("Informe o Email do aluno:");
-                string email = Console.ReadLine();
+                string email = Console.ReadLine()!;
                 Console.WriteLine("Informe o Curso do aluno:");
-                string curso = Console.ReadLine();
+                string curso = Console.ReadLine()!;
                 Aluno aluno = new Aluno(nome,email,curso);
                 service.Cadastrar(aluno);
                 break;
@@ -36,13 +36,13 @@ class Program
 
                 case 3:
                 Console.WriteLine("Informe o nome do aluno:");
-                nome = Console.ReadLine();
+                nome = Console.ReadLine()!;
                 service.BuscarPorNome(nome);
                 break;
 
                 case 4:
                 Console.WriteLine("Informe o id do Aluno:");
-                int id = int.Parse(Console.ReadLine());
+                int id = int.Parse(Console.ReadLine()!);
                 service.Remover(id);
                 break;
 
